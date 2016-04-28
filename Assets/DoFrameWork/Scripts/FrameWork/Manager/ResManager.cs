@@ -10,6 +10,7 @@ namespace UIFrameWork
         private UnityEngine.Object _Object;
         public Type AssetType { get; set; }
         public string Path { get; set; }
+		public int RefCount{ get; set;}
         public bool IsLoad { 
             get
             {
@@ -23,11 +24,44 @@ namespace UIFrameWork
             {
                 if(null == _Object)
                 {
-                    _Object = Resources.Load(Path);
+					_ResourcesLoad();
                 }
                 return _Object;
             }
         }
+
+		public IEnumerator GetGoroutineObject(Action<UnityEngine.Object> _loaded)
+		{
+			while (true) 
+			{
+				if(null == _Object)
+				{
+					yield return null;
+					_ResourcesLoad();
+					yield return null;
+				}else
+				{
+					if(null != _loaded)
+					{
+						_loaded(_Object);
+					}
+				}
+				yield break;
+			}
+		}
+
+		private void _ResourcesLoad()
+		{
+			try{
+				_Object = Resources.Load(Path);
+				if(null == _Object)
+					Debug.Log("Resources Load Failure Path:" + Path);
+			}
+			catch(Exception e)
+			{
+				Debug.Log(e.ToString);
+			}
+		}
 
         public IEnumerator GetAsyncObject(Action<UnityEngine.Object> _loaded)
         {
@@ -158,6 +192,17 @@ namespace UIFrameWork
                 if (null != _loaded)
                     _loaded(null);
             }
+
+			//load Res..
+			AssetInfo _assetInfo = null;
+			if(!dicAseetInfo.TryGetValue(_path,out _assetInfo))
+			{
+				_assetInfo = new AssetInfo();
+				_assetInfo.Path = _path;
+				dicAseetInfo.Add(_path,_assetInfo);
+			}
+			_assetInfo.RefCount++;
+			CoroutineController.Instance.StartCoroutine (_assetInfo.GetAsyncObject (_loaded,_progress));
         }
     }
 }
