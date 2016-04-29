@@ -59,7 +59,7 @@ namespace UIFrameWork
 			}
 			catch(Exception e)
 			{
-				Debug.Log(e.ToString);
+				Debug.Log(e.ToString());
 			}
 		}
 
@@ -106,8 +106,31 @@ namespace UIFrameWork
         private Dictionary<string,GameObject> dicAseetInfo = null;
         public override void Init()
         {
-
+            Resources.Load();
+            Resources.LoadAsync();
         }
+
+		#region Load Resources & Instantiate Object
+		#endregion
+
+		#region Load Resources
+		public UnityEngine.Object Load(string _path)
+		{
+
+		}
+
+		#endregion
+
+		#region Load Coroutine Resources
+		#endregion
+
+		#region Load Async Resources
+		#endregion
+
+		private AssetInfo GetAssetInfo(string _path,Action<UnityEngine.Object> _loaded)
+		{
+
+		}
 
         public UnityEngine.Object LoadInstance(string _path)
         {
