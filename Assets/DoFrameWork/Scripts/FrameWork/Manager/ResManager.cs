@@ -34,9 +34,9 @@ namespace UIFrameWork
 		{
 			while (true) 
 			{
+				yield return null;
 				if(null == _Object)
 				{
-					yield return null;
 					_ResourcesLoad();
 					yield return null;
 				}else
@@ -103,119 +103,118 @@ namespace UIFrameWork
 
     public class ResManager:Singleton<ResManager>
     {
-        private Dictionary<string,GameObject> dicAseetInfo = null;
+		private Dictionary<string,AssetInfo> dicAseetInfo = null;
         public override void Init()
         {
-            Resources.Load();
-            Resources.LoadAsync();
+			dicAseetInfo = new Dictionary<string, AssetInfo>();
         }
 
 		#region Load Resources & Instantiate Object
+		/// <summary>
+		/// Loads the instance.
+		/// </summary>
+		/// <returns>The instance.</returns>
+		/// <param name="_path">_path.</param>
+		public UnityEngine.Object LoadInstance(string _path)
+		{
+			UnityEngine.Object _obj = Load (_path);
+			return Instantiate (_obj);
+		}
+
+		public void LoadCoroutineInstance(string _path,Action<UnityEngine.Object> _loaded)
+		{
+			LoadCoroutine (_path, (_obj) => {Instantiate(_obj,_loaded);});
+		}
+
+		public void LoadAsyncInstance(string _path,Action<UnityEngine.Object> _loaded)
+		{
+			LoadAsync (_path, (_obj) => {Instantiate(_obj,_loaded);});
+		}
+
+		public void LoadAsyncInstance(string _path,Action<UnityEngine.Object> _loaded,Action<float> _progress)
+		{
+			LoadAsync (_path, (_obj) => {Instantiate(_obj,_loaded);},_progress);
+		}
+
 		#endregion
 
 		#region Load Resources
+		/// <summary>
+		/// Load the specified _path.
+		/// </summary>
+		/// <param name="_path">_path.</param>
 		public UnityEngine.Object Load(string _path)
 		{
-
+			AssetInfo _assetInfo = GetAssetInfo (_path);
+			if(null != _assetInfo) 
+				return _assetInfo.AssetObject;
+			return null;
 		}
-
 		#endregion
 
 		#region Load Coroutine Resources
+		/// <summary>
+		/// Loads the coroutine.
+		/// </summary>
+		/// <param name="_path">_path.</param>
+		/// <param name="_loaded">_loaded.</param>
+		public void LoadCoroutine(string _path,Action <UnityEngine.Object> _loaded)
+		{
+			AssetInfo _assetInfo = GetAssetInfo (_path, _loaded);
+			if (null != _assetInfo)
+				CoroutineController.Instance.StartCoroutine (_assetInfo.GetGoroutineObject (_loaded));
+		}
 		#endregion
 
 		#region Load Async Resources
+		/// <summary>
+		/// Loads the async.
+		/// </summary>
+		/// <param name="_path">_path.</param>
+		/// <param name="_loaded">_loaded.</param>
+		public void LoadAsync(string _path,Action<UnityEngine.Object> _loaded)
+		{
+			LoadAsync (_path, _loaded, null);
+		}
+		/// <summary>
+		/// Loads the async.
+		/// </summary>
+		/// <param name="_path">_path.</param>
+		/// <param name="_loaded">_loaded.</param>
+		/// <param name="_progress">_progress.</param>
+		public void LoadAsync(string _path,Action<UnityEngine.Object> _loaded,Action<float> _progress)
+		{
+			AssetInfo _assetInfo = GetAssetInfo (_path, _loaded);
+			if (null != _assetInfo)
+				CoroutineController.Instance.StartCoroutine (_assetInfo.GetAsyncObject (_loaded, _progress));
+		}
 		#endregion
 
+		#region Get AssetInfo & Instantiate Object
+		/// <summary>
+		/// Gets the asset info.
+		/// </summary>
+		/// <returns>The asset info.</returns>
+		/// <param name="_path">_path.</param>
+		private AssetInfo GetAssetInfo(string _path)
+		{
+			return GetAssetInfo (_path, null);
+		}
+		/// <summary>
+		/// Gets the asset info.
+		/// </summary>
+		/// <returns>The asset info.</returns>
+		/// <param name="_path">_path.</param>
+		/// <param name="_loaded">_loaded.</param>
 		private AssetInfo GetAssetInfo(string _path,Action<UnityEngine.Object> _loaded)
 		{
-
-		}
-
-        public UnityEngine.Object LoadInstance(string _path)
-        {
-            UnityEngine.Object _retObj = null;
-            UnityEngine.Object _obj = Load(_path);
-            if(_obj != null)
-            {
-                _retObj = MonoBehaviour.Instantiate(_obj);
-                if(_retObj != null)
-                {
-                    return _retObj;
-                }
-                else
-                {
-                    Debug.LogError("Error:null Instance _retObj");
-                }
-            }
-            else
-            {
-                Debug.LogError("Error:null Resource Load Return _obj");
-            }
-            return null;
-        }
-
-        public void LoadInstance(string _path, Action<UnityEngine.Object> _loaded)
-        {
-            LoadInstance(_path, _loaded, null);
-        }
-
-        public void LoadInstance(string _path,Action<UnityEngine.Object> _loaded,Action<float> _progress)
-        {
-            Load(_path, (_obj) => {
-                UnityEngine.Object _retObj = null;
-                if (null != _obj)
-                {
-                    _retObj = MonoBehaviour.Instantiate(_obj);
-                    if (null != _retObj)
-                    {
-                        if (null != _loaded)
-                        {
-                            _loaded(_retObj);
-                        }
-                        else
-                        {
-                            Debug.LogError("Error:null _loaded");
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogError("Error:null Instance _retObj");
-                    }
-                }
-                else
-                {
-                    Debug.LogError("Error:null Resource Load Return _obj");
-                }
-            }, _progress);
-        }
-
-        public UnityEngine.Object Load(string _path)
-        {
-           if(string.IsNullOrEmpty(_path))
-           {
-               Debug.LogError("Error:Null _path name.");
-           }
-
-           UnityEngine.Object _retObj = null;
-           return _retObj;
-        }
-
-        public void Load(string _path,Action<UnityEngine.Object> _loaded)
-        {
-            Load(_path,_loaded,null);
-        }
-
-
-        public void Load(string _path,Action<UnityEngine.Object> _loaded,Action<float> _progress)
-        {
-            if(string.IsNullOrEmpty(_path))
-            {
-                Debug.LogError("Error:Null _path name.");
-                if (null != _loaded)
-                    _loaded(null);
-            }
-
+			if(string.IsNullOrEmpty(_path))
+			{
+				Debug.LogError("Error:Null _path name.");
+				if (null != _loaded)
+					_loaded(null);
+			}
+			
 			//load Res..
 			AssetInfo _assetInfo = null;
 			if(!dicAseetInfo.TryGetValue(_path,out _assetInfo))
@@ -225,7 +224,47 @@ namespace UIFrameWork
 				dicAseetInfo.Add(_path,_assetInfo);
 			}
 			_assetInfo.RefCount++;
-			CoroutineController.Instance.StartCoroutine (_assetInfo.GetAsyncObject (_loaded,_progress));
-        }
+			return _assetInfo;
+		}
+		/// <summary>
+		/// Instantiate the specified _obj.
+		/// </summary>
+		/// <param name="_obj">_obj.</param>
+		private UnityEngine.Object Instantiate(UnityEngine.Object _obj)
+		{
+			return Instantiate (_obj,null);
+		}
+		/// <summary>
+		/// Instantiate the specified _obj and _loaded.
+		/// </summary>
+		/// <param name="_obj">_obj.</param>
+		/// <param name="_loaded">_loaded.</param>
+		private UnityEngine.Object Instantiate(UnityEngine.Object _obj,Action<UnityEngine.Object> _loaded)
+		{
+			UnityEngine.Object _retObj = null;
+			if(null != _obj)
+			{
+				_retObj = MonoBehaviour.Instantiate(_obj);
+				if(null != _retObj)
+				{
+					if(null != _loaded)
+					{
+						_loaded(_retObj);
+						return null;
+					}
+					return _retObj;
+				}
+				else
+				{
+					Debug.LogError("Error: null Instantiate _retObj");
+				}
+			}
+			else
+			{
+				Debug.LogError("Error: null Resources Load return _obj");
+			}
+			return null;
+		}
+		#endregion
     }
 }
