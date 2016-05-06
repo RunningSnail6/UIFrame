@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseController.cs" />
+     <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseModule.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseUI.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Common\Singleton\DDOLSingleton.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Common\Singleton\Singleton.cs" />
@@ -53,6 +55,7 @@
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Defines\Defines.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\CoroutineController.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\GameController.cs" />
+     <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\ModuleManager.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\ResManager.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\UIManager.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\GameLogic\StartGame.cs" />

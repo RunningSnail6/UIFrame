@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DoFrameWork\Scripts\FrameWork\Manager\ResManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseModule.cs">
     <Files>
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Manager\ResManager.cs" Line="62" Column="1" />
+      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseController.cs" Line="7" Column="4" />
+      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseModule.cs" Line="74" Column="1" />
+      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseUI.cs" Line="4" Column="22" />
+      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Manager\ModuleManager.cs" Line="46" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
