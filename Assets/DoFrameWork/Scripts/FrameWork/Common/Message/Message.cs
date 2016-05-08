@@ -9,15 +9,172 @@
 //------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 
-namespace AssemblyCSharp
+namespace UIFrameWork
 {
 	public class Message : IEnumerable<KeyValuePair<string, object>>
 	{
-		public Message ()
+		private Dictionary<string ,object> dicDatas = null;
+
+		public string Name{ get; private set;}
+		public object Sender { get; private set;}
+		public object Content{ get; set;}
+
+		#region message[key] = value or data = message[key]
+		/// <summary>
+		/// Gets or sets the <see cref="UIFrameWork.Message"/> with the specified key.
+		/// </summary>
+		/// <param name="key">Key.</param>
+		public object this[string key]
 		{
+			get
+			{
+				if(null == dicDatas || dicDatas.ContainsKey(key))
+					return ;
+				return dicDatas[key];
+			}
+			set
+			{
+				if(null == dicDatas)
+					dicDatas = new Dictionary<string, object>();
+				if(dicDatas.ContainsKey(key))
+					dicDatas[key] = value;
+				else
+					dicDatas.Add(key,value);
+			}
 		}
+		#endregion
+
+		#region IEnumerable implementation
+
+		/// <summary>
+		/// Gets the enumerator.
+		/// </summary>
+		/// <returns>The enumerator.</returns>
+		public IEnumerator<KeyValuePair<string, object>> GetEnumerator ()
+		{
+			if (null == dicDatas)
+				yield break;
+			foreach (KeyValuePair<string,object> kvp in dicDatas)
+			{
+				yield return kvp;
+			}
+		}
+
+		#endregion
+
+		#region IEnumerable implementation
+
+		IEnumerator IEnumerable.GetEnumerator ()
+		{
+			return dicDatas.GetEnumerator ();
+		}
+
+		#endregion
+
+		#region Message Construction Function
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UIFrameWork.Message"/> class.
+		/// </summary>
+		/// <param name="name">Name.</param>
+		/// <param name="sender">Sender.</param>
+		public Message (string name, object sender)
+		{
+			Name = name;
+			Sender = sender;
+			Content = null;
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UIFrameWork.Message"/> class.
+		/// </summary>
+		/// <param name="name">Name.</param>
+		/// <param name="sender">Sender.</param>
+		/// <param name="content">Content.</param>
+		public Message (string name ,object sender,object content)
+		{
+			Name = name;
+			Sender = sender;
+			Content = content;
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UIFrameWork.Message"/> class.
+		/// </summary>
+		/// <param name="name">Name.</param>
+		/// <param name="sender">Sender.</param>
+		/// <param name="content">Content.</param>
+		/// <param name="_dicParam">_dic parameter.</param>
+		public Message(string name ,object sender, object content , params object[] _dicParam)
+		{
+			Name = name;
+			Sender = sender;
+			Content = content;
+			if(_dicParam.GetType() == typeof(Dictionary<string, object>))
+			{
+				foreach(object _dicParams in _dicParam)
+				{
+					foreach (KeyValuePair<string, object> kvp in _dicParam as Dictionary<string, object>)
+					{
+						this[kvp.Key] = kvp.Value;//利用索引器赋值
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UIFrameWork.Message"/> class.
+		/// </summary>
+		/// <param name="message">Message.</param>
+		public Message(Message message)
+		{
+			Name = message.Name;
+			Sender = message.Sender;
+			Content = message.Content;
+			foreach(KeyValuePair<string,object> kvp in message.dicDatas)
+			{
+				this[kvp.Key] = kvp.Value;
+			}
+		}
+		#endregion
+
+		#region Add & Remove
+
+		/// <summary>
+		/// Add the specified KeyValuePair and value.
+		/// </summary>
+		/// <param name="KeyValuePair">Key value pair.</param>
+		/// <param name="value">Value.</param>
+		public void Add(string KeyValuePair,object value)
+		{
+			this [key] = value;
+		}
+
+		/// <summary>
+		/// Remove the specified key.
+		/// </summary>
+		/// <param name="key">Key.</param>
+		public void Remove(string key)
+		{
+			if(null != key && dicDatas.ContainsKey(key))
+			{
+				dicDatas.Remove(key);
+			}
+		}
+		#endregion
+
+		/// <summary>
+		/// Send this instance.
+		/// </summary>
+		#region Send()
+		public void Send()
+		{
+			//MessageCenter Send Message
+			MessageCenter.Instance.SendMessage (this);
+		}
+		#endregion
 	}
 }
 

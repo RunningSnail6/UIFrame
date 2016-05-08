@@ -39,12 +39,10 @@ namespace UIFrameWork
 				{
 					_ResourcesLoad();
 					yield return null;
-				}else
+				}
+				if(null != _loaded)
 				{
-					if(null != _loaded)
-					{
-						_loaded(_Object);
-					}
+					_loaded(_Object);
 				}
 				yield break;
 			}

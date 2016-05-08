@@ -5,7 +5,8 @@ namespace UIFrameWork
 {
     #region 全局委托
     public delegate void StateChangeEvent(object sender,EnumObjectState newState,EnumObjectState oldState);
-    #endregion
+	public delegate void MessageEvent(Message message);
+	#endregion
 
     #region 全局枚举对象
     public enum EnumObjectState

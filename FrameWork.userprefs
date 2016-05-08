@@ -1,14 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\Message.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\MessageCenter.cs">
     <Files>
+      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\Message.cs" Line="176" Column="46" />
       <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseController.cs" Line="7" Column="4" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseModule.cs" Line="6" Column="15" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Manager\ModuleManager.cs" Line="16" Column="10" />
+      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseModule.cs" Line="2" Column="22" />
+      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseUI.cs" Line="28" Column="54" />
+      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Manager\ModuleManager.cs" Line="88" Column="41" />
       <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Manager\UIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\Message.cs" Line="22" Column="2" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\MessageCenter.cs" Line="1" Column="1" />
+      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\MessageCenter.cs" Line="47" Column="54" />
+      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Defines\Defines.cs" Line="4" Column="22" />
+      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\MessageType.cs" Line="6" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
