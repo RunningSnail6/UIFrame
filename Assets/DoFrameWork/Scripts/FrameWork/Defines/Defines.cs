@@ -6,6 +6,7 @@ namespace UIFrameWork
     #region 全局委托
     public delegate void StateChangeEvent(object sender,EnumObjectState newState,EnumObjectState oldState);
 	public delegate void MessageEvent(Message message);
+	public delegate void OnTouchEventHandle(EventTriggerListener _listener,object _args,params object[] _params);
 	#endregion
 
     #region 全局枚举对象
