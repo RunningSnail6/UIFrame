@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace UIFrameWork
@@ -83,6 +84,7 @@ namespace UIFrameWork
 
 		private void DoMessageDispatcher(Message message)
 		{
+            Debug.Log("DoMessageDispatcher Name :" + message.Name);
 			if (dicMessageEvents == null || !dicMessageEvents.ContainsKey (message.Name))
 				return;
 			List<MessageEvent> list = dicMessageEvents [message.Name];

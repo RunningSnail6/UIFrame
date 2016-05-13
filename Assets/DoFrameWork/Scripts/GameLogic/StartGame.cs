@@ -28,10 +28,25 @@ public class StartGame : MonoBehaviour {
 			//go.transform.position = UnityEngine.Random.insideUnitSphere * 20;
 		}
 		Debug.Log ("Times:" + (System.Environment.TickCount - time) * 1000);
+        StartCoroutine(AutoUpdateGold());
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 	}
+
+    private IEnumerator AutoUpdateGold()
+    {
+        int gold = 0;
+        while (true)
+        {
+            gold++;
+            yield return new WaitForSeconds(1.0f);
+            Message message = new Message("AutoUpdateGold", this);
+            message["gold"] = gold;
+            message.Send();
+
+        }
+    }
 }

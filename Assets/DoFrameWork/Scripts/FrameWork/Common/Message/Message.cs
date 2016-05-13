@@ -32,7 +32,7 @@ namespace UIFrameWork
 			get
 			{
 				if(null == dicDatas || dicDatas.ContainsKey(key))
-					return ;
+					return null;
 				return dicDatas[key];
 			}
 			set
@@ -107,16 +107,16 @@ namespace UIFrameWork
 		/// <param name="sender">Sender.</param>
 		/// <param name="content">Content.</param>
 		/// <param name="_dicParam">_dic parameter.</param>
-		public Message(string name ,object sender, object content , params object[] _dicParam)
+		public Message(string name ,object sender, object content , params object[] _dicParams)
 		{
 			Name = name;
 			Sender = sender;
 			Content = content;
-			if(_dicParam.GetType() == typeof(Dictionary<string, object>))
+			if(_dicParams.GetType() == typeof(Dictionary<string, object>))
 			{
-				foreach(object _dicParams in _dicParam)
+				foreach(object _dicParam in _dicParams)
 				{
-					foreach (KeyValuePair<string, object> kvp in _dicParam as Dictionary<string, object>)
+                    foreach (KeyValuePair<string, object> kvp in _dicParam as Dictionary<string, object>)
 					{
 						this[kvp.Key] = kvp.Value;//利用索引器赋值
 					}
@@ -147,9 +147,9 @@ namespace UIFrameWork
 		/// </summary>
 		/// <param name="KeyValuePair">Key value pair.</param>
 		/// <param name="value">Value.</param>
-		public void Add(string KeyValuePair,object value)
+        public void Add(string key, object value)
 		{
-			this [key] = value;
+			this[key] = value;
 		}
 
 		/// <summary>
@@ -158,7 +158,7 @@ namespace UIFrameWork
 		/// <param name="key">Key.</param>
 		public void Remove(string key)
 		{
-			if(null != key && dicDatas.ContainsKey(key))
+			if(null != dicDatas && dicDatas.ContainsKey(key))
 			{
 				dicDatas.Remove(key);
 			}

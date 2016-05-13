@@ -49,6 +49,7 @@
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseController.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseModule.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseUI.cs" />
+     <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Common\Extended\MethodExtension.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\Message.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\MessageCenter.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\MessageType.cs" />

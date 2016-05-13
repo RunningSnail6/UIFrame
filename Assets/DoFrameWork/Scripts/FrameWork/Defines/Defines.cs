@@ -6,7 +6,7 @@ namespace UIFrameWork
     #region 全局委托
     public delegate void StateChangeEvent(object sender,EnumObjectState newState,EnumObjectState oldState);
 	public delegate void MessageEvent(Message message);
-	public delegate void OnTouchEventHandle(EventTriggerListener _listener,object _args,params object[] _params);
+	public delegate void OnTouchEventHandle(GameObject _listener,object _args,params object[] _params);
 	#endregion
 
     #region 全局枚举对象
@@ -26,6 +26,25 @@ namespace UIFrameWork
         TestOne = 0,
         TestTwo = 1,
     }
+
+	public enum EnumTouchEventType
+	{
+		OnClick,
+		OnDoubleClick,
+		OnDown,
+		OnEnter,
+		OnExit,
+		OnUp,
+		OnSelect, 
+		OnUpdateSelect, 
+		OnDeSelect,  
+		OnDrag, 
+		OnDragEnd,
+		OnDrop,
+		OnScroll,
+		OnMove,
+	}
+
     #endregion
 
     public class UIPathDefines
