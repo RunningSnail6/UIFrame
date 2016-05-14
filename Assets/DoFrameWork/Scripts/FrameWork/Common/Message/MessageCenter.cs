@@ -14,15 +14,15 @@ namespace UIFrameWork
 		}
 
 		#region Add & Remove Lister
-		public void AddListener(MessageType messageType, MessageEvent messageEvent)
-		{
-			AddListener (messageType.ToString (), messageEvent);
-		}
-		
-		public void RemoveListener(MessageType messageType, MessageEvent messageEvent)
-		{
-			RemoveListener (messageType.ToString (), messageEvent);
-		}
+//		public void AddListener(MessageType messageType, MessageEvent messageEvent)
+//		{
+//			AddListener (messageType.ToString (), messageEvent);
+//		}
+//		
+//		public void RemoveListener(MessageType messageType, MessageEvent messageEvent)
+//		{
+//			RemoveListener (messageType.ToString (), messageEvent);
+//		}
 
 		public void AddListener(string messageName, MessageEvent messageEvent)
 		{
@@ -36,7 +36,10 @@ namespace UIFrameWork
 				list = new List<MessageEvent>();
 				dicMessageEvents.Add(messageName, list);
 			}
-			list.Add(messageEvent);
+			if(!list.Contains(messageEvent))
+			{
+				list.Add(messageEvent);
+			}
 		}
 
 		public void RemoveListener(string messageName, MessageEvent messageEvent)
@@ -64,7 +67,7 @@ namespace UIFrameWork
 		#region Send Message
 		public void SendMessage(Message message)
 		{
-
+			DoMessageDispatcher (message);
 		}
 
 		public void SendMessage(string name, object sender)
@@ -84,7 +87,7 @@ namespace UIFrameWork
 
 		private void DoMessageDispatcher(Message message)
 		{
-            Debug.Log("DoMessageDispatcher Name :" + message.Name);
+            //Debug.Log("DoMessageDispatcher Name :" + message.Name);
 			if (dicMessageEvents == null || !dicMessageEvents.ContainsKey (message.Name))
 				return;
 			List<MessageEvent> list = dicMessageEvents [message.Name];

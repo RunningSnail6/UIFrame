@@ -1,10 +1,10 @@
 using System;
 namespace UIFrameWork
 {
-	public enum MessageType : int
+	public class MessageType
 	{
-		MessageTestOne = 1,
-		MessageTestTwo,
+		public static string Net_MessageTestOne = "Net_MessageTestOne";
+		public static string Net_MessageTestTwo = "Net_MessageTestTwo";
 	}
 }
 

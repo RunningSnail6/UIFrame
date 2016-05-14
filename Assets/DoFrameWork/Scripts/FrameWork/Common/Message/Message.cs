@@ -31,7 +31,7 @@ namespace UIFrameWork
 		{
 			get
 			{
-				if(null == dicDatas || dicDatas.ContainsKey(key))
+				if(null == dicDatas || !dicDatas.ContainsKey(key))
 					return null;
 				return dicDatas[key];
 			}

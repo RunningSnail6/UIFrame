@@ -71,6 +71,7 @@ namespace UIFrameWork
 			if(registerMode == EnumRegisterMode.AutoRegister)
 			{
 				//自动注册
+				ModuleManager.Instance.Register(this);
 				registerMode = EnumRegisterMode.AlreadyRegister;
 			}
 			OnLoad ();
@@ -88,10 +89,10 @@ namespace UIFrameWork
 			{
 				State = EnumObjectState.Disabled;
 
-				//...
 				if(registerMode == EnumRegisterMode.AlreadyRegister)
 				{
 					//unregister
+					ModuleManager.Instance.UnRegister(this);
 					registerMode = EnumRegisterMode.AutoRegister;
 				}
 				OnRelease();
