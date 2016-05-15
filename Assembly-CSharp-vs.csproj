@@ -59,6 +59,7 @@
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Common\Singleton\SingletonException.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Common\Tools\EventTriggerListener.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Defines\Defines.cs" />
+     <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Interface\IDynamicProperty.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\CoroutineController.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\GameController.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\ModuleManager.cs" />
