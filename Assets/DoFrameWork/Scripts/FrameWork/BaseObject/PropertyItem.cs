@@ -52,12 +52,42 @@ namespace UIFrameWork
 
 		private void SetContet(object content)
 		{
-
+			if(canRandom)
+			{
+				if(proertyType == System.Int32)
+				{
+					curRandomInt = UnityEngine.Random.Range(1,1000);
+					this.content = (int)content + curRandomInt;
+				}
+				else if(proertyType == typeof(System.Single))
+				{
+					curRandomFloat = UnityEngine.Random.Range(1.0f,1000.0f);
+					this.content = (float)content + curRandomFloat;
+				}
+			}
+			else
+			{
+				this.content = content;
+			}
 		}
 
 		private object GetContent()
 		{
-
+			if(canRandom)
+			{
+				if(proertyType == System.Int32)
+				{
+					return (int)this.content - curRandomInt;
+				}
+				else if(proertyType == typeof(System.Single))
+				{
+					return (float)this.content - curRandomFloat;
+				}
+			}
+			else
+			{
+				this.content = content;
+			}
 		}
 	}
 }

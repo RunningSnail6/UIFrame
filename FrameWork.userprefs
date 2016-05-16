@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\PropertyItem.cs">
     <Files>
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\PropertyItem.cs" Line="28" Column="39" />
+      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\PropertyItem.cs" Line="45" Column="5" />
       <File FileName="Assets\DoFrameWork\Scripts\GameLogic\TestOne.cs" Line="1" Column="1" />
       <File FileName="Assets\DoFrameWork\Scripts\GameLogic\StartGame.cs" Line="46" Column="35" />
       <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\Message.cs" Line="1" Column="1" />
