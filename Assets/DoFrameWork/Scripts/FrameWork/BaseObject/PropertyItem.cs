@@ -33,6 +33,15 @@ namespace UIFrameWork
 			}
 		}
 
+		public void SetValueWithoutEvent(object content)
+		{
+			if(content != GetContent())
+			{
+				object oldContent = GetContent();
+				SetContet(content);
+			}
+		}
+
 		public object RawContent
 		{
 			get{return rawContent;}
@@ -41,7 +50,7 @@ namespace UIFrameWork
 		public PropertyItem (int id,object content)
 		{
 			proertyType = content.GetType ();
-			if(proertyType == System.Int32 || proertyType == System.Single)
+			if(proertyType == typeof(System.Int32) || proertyType == typeof(System.Single))
 			{
 				canRandom = true;
 			}
@@ -54,7 +63,7 @@ namespace UIFrameWork
 		{
 			if(canRandom)
 			{
-				if(proertyType == System.Int32)
+				if(proertyType == typeof(System.Int32))
 				{
 					curRandomInt = UnityEngine.Random.Range(1,1000);
 					this.content = (int)content + curRandomInt;
@@ -75,7 +84,7 @@ namespace UIFrameWork
 		{
 			if(canRandom)
 			{
-				if(proertyType == System.Int32)
+				if(proertyType == typeof(System.Int32))
 				{
 					return (int)this.content - curRandomInt;
 				}
@@ -84,10 +93,7 @@ namespace UIFrameWork
 					return (float)this.content - curRandomFloat;
 				}
 			}
-			else
-			{
-				this.content = content;
-			}
+				return this.content;
 		}
 	}
 }

@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseActor.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseController.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseModule.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseUI.cs" />
