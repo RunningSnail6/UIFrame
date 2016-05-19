@@ -13,6 +13,22 @@ namespace UIFrameWork
 
 		public EnumActorType ActorType{ set; get;}
 
+        public int ID { set; get; }
+
+        private BaseScene currentScence;
+        public BaseScene CurrentScence
+        {
+            set
+            {
+                //add changeScence logic........
+                currentScence = value;
+            }
+            get
+            {
+                return currentScence;
+            }
+        }
+
 		public virtual void AddProperty(EnumPropertyType propertyType,object content)
 		{
 			AddProperty ((int)propertyType, content);
