@@ -3,58 +3,49 @@ using System.Collections;
 using UIFrameWork;
 using System;
 
-public class StartGame : MonoBehaviour {
+public class GameController : DDOLSingleton<StartGame> {
 
 	// Use this for initialization
 	void Start () {
 
-		UIManager.Instance.OpenUI(EnumUIType.TestOne);
+//		UIManager.Instance.OpenUI(EnumUIType.TestOne);
 //		GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/TestUIOne"));
 //		TestOne to = go.GetComponent<TestOne>();
 //		if (null == to)
 //			to = go.AddComponent<TestOne>();
 
-		RegisterAllModules ();
+		//RegisterAllModules ();\
+		ModuleManager.Instance.RegisterAllModules ();
+		ScenceManager.Instance.RegisterAllScence ();
 
-//        UIManager.Instance.OpenUI(EnumUIType.TestOne);
-		float time = System.Environment.TickCount;
-		for(int i=1;i<2000;i++)
-		{
-			GameObject go =null;
-			// 1
-//			go = Instantiate(Resources.Load<GameObject>("Prefabs/Cube"))as GameObject;
-			// 2
-//			go = ResManager.Instance.LoadInstance("Prefabs/Cube") as GameObject;
-			// 3
-//			ResManager.Instance.LoadAsyncInstance("Prefabs/Cube",(_obj)=>{
-//				go = _obj as GameObject;
-//				go.transform.position = UnityEngine.Random.insideUnitSphere * 20;
-//			}) ;
-			// 4
-//			ResManager.Instance.LoadCoroutineInstance("Prefabs/Cube",(_obj)=>{
-//				go = _obj as GameObject;
-//				go.transform.position = UnityEngine.Random.insideUnitSphere * 20;
-//			}) ;
-			//go.transform.position = UnityEngine.Random.insideUnitSphere * 20;
-		}
-		Debug.Log ("Times:" + (System.Environment.TickCount - time) * 1000);
-        StartCoroutine(AutoUpdateGold());
+////        UIManager.Instance.OpenUI(EnumUIType.TestOne);
+//		float time = System.Environment.TickCount;
+//		for(int i=1;i<2000;i++)
+//		{
+//			GameObject go =null;
+//			// 1
+////			go = Instantiate(Resources.Load<GameObject>("Prefabs/Cube"))as GameObject;
+//			// 2
+////			go = ResManager.Instance.LoadInstance("Prefabs/Cube") as GameObject;
+//			// 3
+////			ResManager.Instance.LoadAsyncInstance("Prefabs/Cube",(_obj)=>{
+////				go = _obj as GameObject;
+////				go.transform.position = UnityEngine.Random.insideUnitSphere * 20;
+////			}) ;
+//			// 4
+////			ResManager.Instance.LoadCoroutineInstance("Prefabs/Cube",(_obj)=>{
+////				go = _obj as GameObject;
+////				go.transform.position = UnityEngine.Random.insideUnitSphere * 20;
+////			}) ;
+//			//go.transform.position = UnityEngine.Random.insideUnitSphere * 20;
+//		}
+//		Debug.Log ("Times:" + (System.Environment.TickCount - time) * 1000);
+//        StartCoroutine(AutoUpdateGold());
 	}
 
 
 	//此部分应在GameController中完成
-	private void RegisterAllModules()
-	{
-		LoadModule (typeof(TestOneModule));
 
-		//...........add
-	}
-	//(System.Activator.CreateInstance)为创建类型的一个实例
-	private void LoadModule(Type moduleType)
-	{
-		BaseModule bm = System.Activator.CreateInstance (moduleType) as BaseModule;
-		bm.Load ();
-	}
 
 	// Update is called once per frame
 	void Update () {

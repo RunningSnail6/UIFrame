@@ -33,6 +33,19 @@ namespace UIFrameWork
 		}
 		#endregion
 
+		public void RegisterAllModules()
+		{
+			LoadModule (typeof(TestOneModule));
+			
+			//...........add
+		}
+		//(System.Activator.CreateInstance)为创建类型的一个实例
+		public void LoadModule(Type moduleType)
+		{
+			BaseModule bm = System.Activator.CreateInstance (moduleType) as BaseModule;
+			bm.Load ();
+		}
+
 		#region Register Module By Module Type
 		/// <summary>
 		/// Register the specified module.

@@ -72,6 +72,17 @@ namespace UIFrameWork
 		Npc,
 	}
 
+	public enum EnumScenceType
+	{
+		None = 0,
+		StartGame,
+		LoginScence,
+		MainScence,
+		CopyScence,
+		PVPScence,
+		PveScence,
+	}
+
     #endregion
 
     public class UIPathDefines
