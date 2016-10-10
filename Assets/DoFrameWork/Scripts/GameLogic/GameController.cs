@@ -3,7 +3,7 @@ using System.Collections;
 using UIFrameWork;
 using System;
 
-public class GameController : DDOLSingleton<StartGame> {
+public class GameController : DDOLSingleton<GameController> {
 
 	// Use this for initialization
 	void Start () {

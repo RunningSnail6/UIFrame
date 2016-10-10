@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 namespace UIFrameWork
 {
@@ -22,6 +23,22 @@ namespace UIFrameWork
 		#endregion
 
 		private Dictionary<EnumScenceType,ScenceInfoData> dicScenceInfos = null;
+
+		private BaseScene currentScene = new BaseScene ();
+
+		public EnumScenceType LastSceneType{ get; set;}
+
+		public EnumScenceType ChangeSceneType{ get; private set;}
+
+		private EnumUIType sceneOpenUIType = EnumUIType.None;
+
+		private object[] scenceOpenUIParams = null;
+
+		public BaseScene CurrentScence 
+		{
+			get {return currentScene;}
+			set{ currentScene = value;}
+		}
 
 		public override void Init()
 		{
@@ -85,6 +102,104 @@ namespace UIFrameWork
 		public void ClearScence()
 		{
 			dicScenceInfos.Clear ();
+		}
+
+		#region Change Scence
+
+		public void ChangeScenceDirect(EnumScenceType _sceneType)
+		{
+			UIManager.Instance.CloseUIAll ();
+			if(CurrentScence != null)
+			{
+				CurrentScence.Release();
+				CurrentScence = null;
+			}
+			LastSceneType = ChangeSceneType;
+			ChangeSceneType = _sceneType;
+			string sceneName = GetScenceName (_sceneType);
+			//change scene
+			CoroutineController.Instance.StartCoroutine (AsyncLoadScene (sceneName));
+		}
+
+		public void ChangeScenceDirect(EnumScenceType _scenceType,EnumUIType _uiType,params object[] _params)
+		{
+			sceneOpenUIType = _uiType;
+			scenceOpenUIParams = _params;
+			if(LastSceneType == _scenceType)
+			{
+				if(sceneOpenUIType == EnumUIType.None)
+				{
+					return;
+				}
+				UIManager.Instance.OpenUI(sceneOpenUIType,scenceOpenUIParams);
+				sceneOpenUIType = EnumUIType.None;
+			}
+			else
+			{
+				ChangeScenceDirect(_scenceType);
+			}
+		}
+
+		public IEnumerator<AsyncOperation> AsyncLoadScene(string sceneName)
+		{
+			AsyncOperation oper = Application.LoadLevelAsync (sceneName);
+			yield return oper;
+			//message send
+
+			if(sceneOpenUIType != EnumUIType.None)
+			{
+				UIManager.Instance.OpenUI(sceneOpenUIType,scenceOpenUIParams);
+				sceneOpenUIType = EnumUIType.None;
+			}
+		}
+		#endregion
+
+		public void ChangeScence(EnumScenceType _sceneType)
+		{
+			UIManager.Instance.CloseUIAll ();
+			if(CurrentScence != null)
+			{
+				CurrentScence.Release();
+				CurrentScence = null;
+			}
+			LastSceneType = ChangeSceneType;
+			ChangeSceneType = _sceneType;
+			string sceneName = GetScenceName (_sceneType);
+			//change loding scene
+			CoroutineController.Instance.StartCoroutine (AsyncLoadOtherScene ());
+		}
+		
+		public void ChangeScence(EnumScenceType _scenceType,EnumUIType _uiType,params object[] _params)
+		{
+			sceneOpenUIType = _uiType;
+			scenceOpenUIParams = _params;
+			if(LastSceneType == _scenceType)
+			{
+				if(sceneOpenUIType == EnumUIType.None)
+				{
+					return;
+				}
+				UIManager.Instance.OpenUI(sceneOpenUIType,scenceOpenUIParams);
+				sceneOpenUIType = EnumUIType.None;
+			}
+			else
+			{
+				ChangeScence(_scenceType);
+			}
+		}
+		
+		private IEnumerator AsyncLoadOtherScene()
+		{
+			string sceneName = GetScenceName (EnumScenceType.LoadingScene);
+			AsyncOperation oper = Application.LoadLevelAsync (sceneName);
+			yield return oper;
+			//message send
+			
+			if(sceneOpenUIType != EnumUIType.None)
+			{
+				UIManager.Instance.OpenUI(sceneOpenUIType,scenceOpenUIParams);
+				sceneOpenUIType = EnumUIType.None;
+			}
 		}
     }
 }

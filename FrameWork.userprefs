@@ -1,19 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DoFrameWork\Scripts\FrameWork\Defines\Defines.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\FrameWorkProjects\Assets\Scripts\TeachEqual.cs">
     <Files>
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Defines\Defines.cs" Line="54" Column="8" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\PropertyItem.cs" Line="4" Column="27" />
-      <File FileName="Assets\DoFrameWork\Scripts\GameLogic\TestOne.cs" Line="1" Column="1" />
-      <File FileName="Assets\DoFrameWork\Scripts\GameLogic\StartGame.cs" Line="1" Column="1" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\Message.cs" Line="1" Column="1" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\MessageCenter.cs" Line="1" Column="1" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Common\Tools\EventTriggerListener.cs" Line="1" Column="1" />
-      <File FileName="Assets\DoFrameWork\Scripts\GameLogic\Module\TestOneModule.cs" Line="1" Column="1" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseModule.cs" Line="1" Column="1" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Common\Message\MessageType.cs" Line="1" Column="1" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\Interface\IDynamicProperty.cs" Line="1" Column="1" />
-      <File FileName="Assets\DoFrameWork\Scripts\FrameWork\BaseObject\BaseActor.cs" Line="36" Column="4" />
+      <File FileName="..\FrameWorkProjects\Assets\Scripts\TeachEqual.cs" Line="23" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

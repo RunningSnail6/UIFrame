@@ -63,13 +63,12 @@
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Defines\Defines.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Interface\IDynamicProperty.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\CoroutineController.cs" />
-     <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\GameController.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\ModuleManager.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\ResManager.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\ScenceManager.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\FrameWork\Manager\UIManager.cs" />
+     <Compile Include="Assets\DoFrameWork\Scripts\GameLogic\GameController.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\GameLogic\Module\TestOneModule.cs" />
-     <Compile Include="Assets\DoFrameWork\Scripts\GameLogic\StartGame.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\GameLogic\TestOne.cs" />
      <Compile Include="Assets\DoFrameWork\Scripts\GameLogic\TestTwo.cs" />
  <Reference Include="UnityEngine.UI">

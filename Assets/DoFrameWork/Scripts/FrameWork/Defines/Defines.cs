@@ -76,6 +76,7 @@ namespace UIFrameWork
 	{
 		None = 0,
 		StartGame,
+		LoadingScene,
 		LoginScence,
 		MainScence,
 		CopyScence,
